@@ -6,7 +6,7 @@ High Performance NodeJS MTProto Proxy
 
 Change port and secret field in config.json.
 
-### Build docker and run docker
+### Build and run docker image
 
 Clone this repository and change your directory to JSMTProxy and run below commands.
 
