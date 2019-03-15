@@ -53,13 +53,13 @@ function create_idle_server(id, ip) {
 		while (true) {
 			let val = (random_buf[3] << 24) | (random_buf[2] << 16) | (random_buf[1] << 8) | (random_buf[0]);
 			let val2 = (random_buf[7] << 24) | (random_buf[6] << 16) | (random_buf[5] << 8) | (random_buf[4]);
-			if (random_buf[0] != 0xef &&
-				val != 0x44414548 &&
-				val != 0x54534f50 &&
-				val != 0x20544547 &&
-				val != 0x4954504f &&
-				val != 0xeeeeeeee &&
-				val2 != 0x00000000) {
+			if (random_buf[0] !== 0xef &&
+				val !== 0x44414548 &&
+				val !== 0x54534f50 &&
+				val !== 0x20544547 &&
+				val !== 0x4954504f &&
+				val !== 0xeeeeeeee &&
+				val2 !== 0x00000000) {
 				random_buf[56] = random_buf[57] = random_buf[58] = random_buf[59] = 0xef;
 				break;
 			}
@@ -154,7 +154,7 @@ net.createServer(function(socket) {
 
 	socket.on('data', function(data) {
 
-		if (socket.init == null && (data.length == 41 || data.length == 56)) {
+		if (socket.init == null && (data.length === 41 || data.length === 56)) {
 			let client_ip = socket.remoteAddress.substr(7, socket.remoteAddress.length);
 			socket.destroy();
 			return;
@@ -198,7 +198,7 @@ net.createServer(function(socket) {
 			socket.dcId = Math.abs(dec_auth_packet.readInt16LE(60)) - 1;
 
 			for (var i = 0; i < 4; i++) {
-				if (dec_auth_packet[56 + i] != 0xef) {
+				if (dec_auth_packet[56 + i] !== 0xef) {
 					socket.destroy();
 					return;
 				}
@@ -238,8 +238,7 @@ net.createServer(function(socket) {
 
 		let enc_payload = socket.server_socket.cipher_enc_server.update(payload);
 		if (socket.server_socket.writable) {
-			socket.server_socket.write(enc_payload, () => {
-			});
+			socket.server_socket.write(enc_payload, () => {});
 		} else {
 			socket.server_socket.destroy();
 			socket.destroy();
