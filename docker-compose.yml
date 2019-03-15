@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mtproto:
+    image: mtproto:latest
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: on-failure
+    ports:
+     - "8080:8080"
+    tty: true
