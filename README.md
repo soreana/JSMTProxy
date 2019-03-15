@@ -16,8 +16,7 @@ $ docker run -it -p <your public port>:<config.json port> mtproto
 ```
 
 ### Connect from telegram
-
-https://t.me/proxy?server=<your public IP>&port=<your public port>&secret=<your secret>
+[https://t.me/proxy?server=<your public IP>&port=<your public port>&secret=<your secret>](https://t.me/proxy?server=<your public IP>&port=<your public port>&secret=<your secret>)
 
 ## License
 
